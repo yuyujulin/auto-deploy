@@ -1,0 +1,9 @@
+.me-project{
+    height: 100px;
+}
+.me-project li{
+    width:100px;
+    height:100px;
+    border: 1px solid #dddddd;
+    border-radius:4px;
+}
