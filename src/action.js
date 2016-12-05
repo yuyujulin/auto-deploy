@@ -6,12 +6,11 @@ import request from 'superagent'
 
 import {hashHistory} from 'react-router'
 
-const host = 'http://101.200.129.112:9527/'
+const host = 'http://101.200.129.112:9527'
 
 const api = {
-    init: '/deploy/init',
-    login: '/deploy/login',
-    logout:'/deploy/logout'
+    logout: '/deploy/logout',
+    detail: '/deploy/detail'
 }
 
 export function getInit(obj) {
@@ -23,47 +22,29 @@ export function getInit(obj) {
     }
 }
 
-export function getLogin(obj) {
+export function reset(obj) {
     return {
-        type: 'get-login',
+        type: 'reset',
         data: obj
     }
 }
-export function init() {
+
+export function getDetail(obj) {
+    return {
+        type: 'get-detail',
+        data: obj
+    }
+}
+
+export function detail(query) {
     return function (dispatch) {
-        request.get(host + api.init)
+        request
+            .get(host + api.detail)
+            .query(query)
             .withCredentials()
             .end(function (err, res) {
                 var data = res.body
-                if (data.noLogin) {
-                    hashHistory.push('login')
-                } else {
-                    hashHistory.push('home')
-                    dispatch(getInit(res.body))
-                }
-            })
-    }
-}
-
-export function login(query) {
-    return function (dispatch) {
-        request.get(host + api.login)
-            .query(query)
-            .end(function (err, res) {
-                var data = res.body
-                if(!data.noLogin){ //已登录
-                    dispatch(init())
-                }
-                // dispatch(getLogin(res.body))
-            })
-    }
-}
-
-export function logout() {
-    return function (dispatch) {
-        request.get(host + api.logout)
-            .end(function (err, res) {
-              console.log(res.body)
+                dispatch(getDetail(data))
             })
     }
 }

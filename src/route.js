@@ -13,28 +13,25 @@ import Home from './component/home'
 import Repo from './component/repo'
 import Page404 from './component/page-404'
 
-import {init, login} from './action'
+import {init, login, reset, getInit} from './action'
 
 const R = React.createClass({
     render(){
         return (
             <Router history={hashHistory}>
-                <Route path="login" component={Login}></Route>
-                <Route path="users" component={User}></Route>
-                <Route path="me" component={Me}>
-
-                </Route>
-                <Route path="repo/:name" component={Repo}></Route>
+                <Route path='/' component={Home}/>
+                <Route path="user" component={User}></Route>
+                <Route path="me" component={Me}/>
+                <Route path="repo/:id" component={Repo}></Route>
                 <Route path="project" component={Project}></Route>
                 <Route path="home" component={Home}></Route>
                 <Route path="*" component={Page404}></Route>
             </Router>
         )
     },
-    componentDidMount(){
-        const {init,dispatch, login} = this.props
-        // dispatch(login({name:'lielie2', password:'lielie2'}))
-        dispatch(init())
+    componentWillMount(){
+        const {dispatch} = this.props
+        dispatch(getInit(window.initData))
     }
 })
 
@@ -46,9 +43,11 @@ var store2props = function () {
 
 var action2props = function (dispatch) {
     return {
+        dispatch,
         init: init,
-        login:login,
-        dispatch:dispatch
+        login: login,
+        reset: reset
+
     }
 }
 
