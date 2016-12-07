@@ -36,13 +36,14 @@ export function getDetail(obj) {
     }
 }
 
+
 export function detail(query) {
     return function (dispatch) {
         request
             .get(host + api.detail)
             .query(query)
             .withCredentials()
-            .end(function (err, res) {
+            .then(function (err, res) {
                 var data = res.body
                 dispatch(getDetail(data))
             })
