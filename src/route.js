@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 
 import User from './component/user'
 import Me from './component/me'
-import Login from './component/login'
 import Project from './component/project'
 import Home from './component/home'
 import Repo from './component/repo'
@@ -35,7 +34,6 @@ const R = React.createClass({
     }
 })
 
-import {} from 'react-redux'
 
 var store2props = function () {
     return {}

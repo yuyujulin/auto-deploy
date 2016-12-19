@@ -105,12 +105,12 @@ var Repo = React.createClass({
 
 import {connect} from 'react-redux'
 
-var store2props = function (store) {
+var state2props = function (state) {
     return {
-        info: store.me.info,
-        users: store.me.users,
-        project: store.detail.project
+        info: state.me.info,
+        users: state.me.users,
+        project: state.detail.project
     }
 }
-var Re = connect(store2props)(Repo)
+var Re = connect(state2props)(Repo)
 export default Re

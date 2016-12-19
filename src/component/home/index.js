@@ -47,7 +47,6 @@ var Home = React.createClass({
         })
         return (
             <div className="home">
-                <h3>前端项目自动发布系统</h3>
                 <Row>
                     <Col span={2}>我</Col>
                     <Col span={4}><Link to="me">{info.name}</Link></Col>

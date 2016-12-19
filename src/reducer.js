@@ -3,7 +3,7 @@
  */
 import {combineReducers} from 'redux'
 
-const me = function (state = {info: {}, project: []}, action) {
+const me = function (state = {info: {}, project: [], users:[]}, action) {
     switch (action.type) {
         case 'get-init':
             return Object.assign({}, state,

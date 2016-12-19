@@ -8,12 +8,12 @@ import Init from './init'
 
 import './index.css'
 
-var Header = React.createClass({
+var Wrapper = React.createClass({
     render(){
         return (
             <div className="app-auto-deploy">
                 <h1>前端项目自动发布系统</h1>
-                <div id="auto-deploy-container">
+                <div className="auto-deploy-container">
                     {this.props.children}
                 </div>
             </div>
@@ -22,8 +22,8 @@ var Header = React.createClass({
 })
 
 ReactDOM.render(
-    <Header>
+    <Wrapper>
         <Init/>
-    </Header>,
+    </Wrapper>,
     document.getElementById('root')
 )
